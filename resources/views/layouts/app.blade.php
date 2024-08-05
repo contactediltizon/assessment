@@ -15,15 +15,29 @@
         <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
             <a class="navbar-brand w-auto pr-0" href="#">{{ config('app.name') }}</a>
             <ul class="navbar-nav align-items-center ml-auto">
-                <li class="nav-item mr-2">
-                    Hi, <strong>John</strong>!
-                </li>
+                <!-- Check if the user is authenticated -->
+                @auth
+                    <!-- Display the authenticated user's name -->
+                    <li class="nav-item mr-2">
+                        Hi, <strong>{{ Auth::user()->name }}</strong>!
+                    </li>
 
-                <li class="nav-item mr-2">
-                    <a href="#" class="nav-link btn" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
-                    <form id="logout-form" action="#" method="POST" style="display: none;">@csrf</form>
-                </li>
+                    <!-- Logout link -->
+                    <li class="nav-item mr-2">
+                        <a href="#" class="nav-link btn" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                        <!-- Ensure the logout form is correctly set up with the logout route -->
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                @else
+                    <!-- Optional: display a message or login link if the user is not authenticated -->
+                    <li class="nav-item mr-2">
+                        <a href="{{ route('login') }}" class="nav-link">Login</a>
+                    </li>
+                @endauth
             </ul>
+
         </nav>
 
         <div id="layoutSidenav">

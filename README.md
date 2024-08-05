@@ -1,3 +1,49 @@
+## Setup Instructions
+
+### Prerequisites
+
+- PHP 8.x
+- Composer
+- Node.js & NPM
+- A local database (e.g., MySQL)
+
+### Installation
+
+1. Clone the repository:
+
+   git clone https://github.com/YOUR_USERNAME/assessment.git
+   cd assessment
+
+2.	Install dependencies:
+
+composer install
+npm install
+npm run dev
+
+3.	Configure environment variables:
+
+cp .env.example .env
+php artisan key:generate
+
+4.	Update the .env file with your database and mail configurations.
+
+5.	Run migrations and seed the database:
+
+
+php artisan migrate
+php artisan db:seed
+
+6.	Start the queue worker:
+
+php artisan queue:work
+
+7.	Run the development server:
+
+php artisan serve
+php artisan queue:work
+
+####
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
